@@ -12,13 +12,13 @@ import time
 def browser_preconfig():
     browser.config.browser_name="chrome"
     browser.config.base_url = 'https://demoqa.com'
-    browser.config.window_width=1920
-    browser.config.window_height=1080
-    #browser.config.save_screenshot_on_failure
+    #browser.config.window_width=1920
+    #browser.config.window_height=1080
     yield
+    browser.config.quit_driver()
 
 def test_submit_info(browser_preconfig):
-    browser.open('/automation-practice-form')
+    browser.open('/automation-practice-form').driver.fullscreen_window()
     browser.should(have.title('ToolsQA'))
     browser.element('.main-header').should(have.text('Practice Form'))
     # Name
@@ -30,6 +30,11 @@ def test_submit_info(browser_preconfig):
     browser.element('#gender-radio-1').double_click()
     # Mobile
     browser.element('#userNumber').type(random.randint(1111111111,9999999999))
+    # Date of Birth
+    browser.element('#dateOfBirthInput').click()
+    browser.element('.react-datepicker__month-select').type('June')
+    browser.element('.react-datepicker__year-select').type('1987')
+    browser.element('[aria-label="Choose Sunday, June 7th, 1987"]').click()
     # Subjects : Social Studies, Chemistry
     browser.element('#subjectsInput').type('so').press_enter().type('ch').press_enter()
     # Hobbies
@@ -43,4 +48,10 @@ def test_submit_info(browser_preconfig):
     # State and city
     browser.element('#react-select-3-input').type('ut').press_enter()
     browser.element('#react-select-4-input').type('a').press_enter()
-    time.sleep(2)
+    browser.element('#submit').click()
+
+    #Check
+    browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
+    browser.element('.table-responsive').should((have.text('Male')))
+
+    time.sleep(10)
