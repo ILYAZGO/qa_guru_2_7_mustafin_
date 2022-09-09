@@ -41,8 +41,7 @@ def test_submit_info(browser_preconfig):
     #Check
     browser.element('#example-modal-sizes-title-lg').should(be.visible)
     browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
-    browser.element('.table-responsive').should(have.text(first_name))
-    browser.element('.table-responsive').should(have.text(last_name))
+    browser.element('.table-responsive').should(have.text(first_name+' '+last_name))
     browser.element('.table-responsive').should(have.text(email))
     browser.element('.table-responsive').should(have.text('Male'))
     browser.element('.table-responsive').should(have.text(str(mobile)))
