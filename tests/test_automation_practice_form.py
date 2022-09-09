@@ -51,3 +51,6 @@ def test_submit_info(browser_preconfig):
     browser.element('.table-responsive').should(have.text('kitty.jpeg'))
     browser.element('.table-responsive').should(have.text(address))
     browser.element('.table-responsive').should(have.text('Uttar Pradesh Agra'))
+
+def test_table_change(browser_preconfig):
+    pass
