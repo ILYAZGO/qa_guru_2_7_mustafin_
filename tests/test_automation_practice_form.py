@@ -1,4 +1,3 @@
-import os
 from .params import first_name,last_name,email,mobile,path,address
 from selene.support.shared import browser
 from selene import be, have
@@ -40,6 +39,7 @@ def test_submit_info(browser_preconfig):
     browser.element('#submit').click()
 
     #Check
+    browser.element('#example-modal-sizes-title-lg').should(be.visible)
     browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
     browser.element('.table-responsive').should(have.text(first_name))
     browser.element('.table-responsive').should(have.text(last_name))
