@@ -2,7 +2,7 @@ import random
 from faker import Faker
 fake = Faker('ru_RU')
 import os
-filename = 'kitty.jpeg'
+filename = '/testdata/kitty.jpeg'
 from selene.support.shared import browser
 from selene import be, have
 import pytest
@@ -37,8 +37,7 @@ def test_submit_info(browser_preconfig):
     browser.element("label[for='hobbies-checkbox-2']").click()
     browser.element("label[for='hobbies-checkbox-3']").click()
     # Picture
-    #print (os.path.abspath(filename))
-    browser.element('#uploadPicture').send_keys(os.path.abspath(filename))
+    browser.element('#uploadPicture').send_keys(os.path.dirname(os.getcwd())+filename)
     # Current Address
     browser.element('#currentAddress').type(fake.address())
     # State and city
