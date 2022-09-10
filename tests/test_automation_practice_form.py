@@ -95,5 +95,8 @@ def test_table_change(browser_preconfig):
     browser.element('.rt-table').should(have.text(actual_department+add_letter))
 
 
+    #Step3
+    browser.element('#delete-record-3').click()
 
-    time.sleep(5)
+    #Step3 check
+    browser.all('[title="Delete"]').should(have.size(3))
