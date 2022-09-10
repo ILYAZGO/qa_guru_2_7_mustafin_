@@ -54,6 +54,7 @@ def test_submit_info(browser_preconfig):
 def test_table_change(browser_preconfig):
     browser.open('/webtables').driver.fullscreen_window()
     browser.element('.main-header').should(have.text('Web Tables'))
+
     #Step1
     browser.element('#addNewRecordButton').click()
     browser.element('#registration-form-modal').should(be.visible).should(have.text('Registration Form'))
