@@ -1,7 +1,6 @@
 from .params import first_name,last_name,email,ten_digits,path,address,age,department,add_letter
 from selene.support.shared import browser
 from selene import be, have
-import time
 
 def test_submit_info(browser_preconfig):
     browser.open('/automation-practice-form').driver.fullscreen_window()
@@ -38,7 +37,6 @@ def test_submit_info(browser_preconfig):
     browser.element('#submit').click()
 
     #Check
-    #browser.element('#example-modal-sizes-title-lg').should(be.visible)
     browser.element('#example-modal-sizes-title-lg').should(be.visible).should(have.text('Thanks for submitting the form'))
     browser.element('.table-responsive').should(have.text(first_name+' '+last_name))
     browser.element('.table-responsive').should(have.text(email))
