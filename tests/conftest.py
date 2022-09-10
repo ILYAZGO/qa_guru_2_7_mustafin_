@@ -8,4 +8,4 @@ def browser_preconfig():
     #browser.config.window_width=1920
     #browser.config.window_height=1080
     yield
-    browser.config.quit_driver()
+    #browser.config.quit_driver()
