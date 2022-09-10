@@ -5,7 +5,7 @@ from selene import be, have
 def test_submit_info(browser_preconfig):
     browser.open('/automation-practice-form').driver.fullscreen_window()
     browser.should(have.title('ToolsQA'))
-    browser.element('.main-header').should(have.text('Practice Form'))
+    browser.element('.main-header').should(be.visible).should(have.text('Practice Form'))
     # Name
     browser.element('#firstName').type(first_name)
     browser.element('#lastName').type(last_name)
