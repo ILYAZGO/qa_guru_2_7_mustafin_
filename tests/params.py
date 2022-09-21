@@ -9,7 +9,7 @@ email = fake.ascii_company_email()
 ten_digits = str(random.randint(1111111111,9999999999))
 address = fake.address()
 
-filename = '/testdata/kitty.jpeg'
+filename = '/resources/kitty.jpeg'
 path = os.getcwd() + filename
 
 age = str(random.randint(10,99))

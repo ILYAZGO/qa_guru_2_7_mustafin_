@@ -1,20 +1,20 @@
-from .params import first_name,last_name,email,ten_digits,path,address,age,department,add_letter
+from .params import *
+from demoqa_tests.model.select_page import *
+from demoqa_tests.model.pages.registration_form import *
+from demoqa_tests.model.controls import checkbox
 from selene.support.shared import browser
 from selene import be, have
 
-def test_submit_info(browser_preconfig):
-    browser.open('/automation-practice-form').driver.fullscreen_window()
+def test_registration_form(browser_preconfig):
+    given_opened('/automation-practice-form')
     browser.should(have.title('ToolsQA'))
     browser.element('.main-header').should(be.visible).should(have.text('Practice Form'))
-    # Name
-    browser.element('#firstName').type(first_name)
-    browser.element('#lastName').type(last_name)
-    # Email
-    browser.element('#userEmail').type(email)
+
+    fill_out_name(first_name,last_name)
+    fill_out_email(email)
     # Gender
     browser.element('#gender-radio-1').double_click()
-    # Mobile
-    browser.element('#userNumber').type(ten_digits)
+    fill_out_mobile(ten_digits)
     # Date of Birth
     browser.element('#dateOfBirthInput').click()
     browser.element('.react-datepicker__month-select').type('June')
@@ -23,9 +23,7 @@ def test_submit_info(browser_preconfig):
     # Subjects : Social Studies, Chemistry
     browser.element('#subjectsInput').type('so').press_enter().type('ch').press_enter()
     # Hobbies
-    browser.element("label[for='hobbies-checkbox-1']").click()
-    browser.element("label[for='hobbies-checkbox-2']").click()
-    browser.element("label[for='hobbies-checkbox-3']").click()
+    checkbox.select_necessary_checkboxes(3)
     # Picture
     #print(os.path.dirname(os.getcwd())+filename)
     browser.element('#uploadPicture').send_keys(path)
@@ -50,7 +48,7 @@ def test_submit_info(browser_preconfig):
     browser.element('.table-responsive').should(have.text('Uttar Pradesh Agra'))
 
 def test_table_change(browser_preconfig):
-    browser.open('/webtables').driver.fullscreen_window()
+    given_opened('/webtables')
     browser.element('.main-header').should(have.text('Web Tables'))
 
     #Step1
