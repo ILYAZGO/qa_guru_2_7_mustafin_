@@ -1,9 +1,8 @@
-from .params import *
+from demoqa_tests.utils.params import *
 from demoqa_tests.model.select_page import *
 from demoqa_tests.model.pages.web_tables import *
 from selene.support.shared import browser
 from selene import be, have
-import time
 
 
 def test_add_new_record(browser_preconfig):
@@ -14,7 +13,7 @@ def test_add_new_record(browser_preconfig):
 
     # WHEN
     add_new.click()
-    fill_out_name(first_name,last_name)
+    fill_out_name(first_name, last_name)
     fill_out_email(email)
     fill_out_age(age)
     fill_out_salary(ten_digits)
@@ -29,10 +28,11 @@ def test_add_new_record(browser_preconfig):
     table.should(have.text(ten_digits))
     table.should(have.text(department))
 
+
 def test_edit_record_2(browser_preconfig):
     # WHEN
     browser.element('#edit-record-2').click()
-    fill_out_name('IVAN','IVANOV')
+    fill_out_name('IVAN', 'IVANOV')
     fill_out_email('ivanov@mail.com')
     fill_out_age(age)
     fill_out_salary(ten_digits)
@@ -45,6 +45,7 @@ def test_edit_record_2(browser_preconfig):
     table.should(have.text(age))
     table.should(have.text(ten_digits))
     table.should(have.text(department))
+
 
 def test_rows_after_delete(browser_preconfig):
     # WHEN

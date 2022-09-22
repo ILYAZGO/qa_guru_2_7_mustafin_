@@ -2,7 +2,7 @@ from selene.support.shared import browser
 from selenium.webdriver.common.keys import Keys
 
 
-def input(day : str,month : str,year : str):
+def input(day: str, month: str, year: str):
     browser.element('#dateOfBirthInput').send_keys(Keys.CONTROL+'a').type(day+month+year).press_enter()
 
 
